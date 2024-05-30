@@ -16,9 +16,7 @@ INFO
 
 ### Credits
 
-- Inspired byJohn Smilga <3
+- Inspired by John Smilga <3
 
-Check him out!
-<br/>
-[John's Youtube Channel](https://www.youtube.com/@CodingAddict)
+Check him out! [John's Youtube Channel](https://www.youtube.com/@CodingAddict)
 <br/>
