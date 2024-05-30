@@ -5,7 +5,7 @@ const NavSearch = () => {
     <Input
       type='text'
       placeholder='find a property...'
-      className='max-w-xs dark:bg-secondary'
+      className='hidden sm:block max-w-sm dark:bg-secondary'
     />
   );
 };
