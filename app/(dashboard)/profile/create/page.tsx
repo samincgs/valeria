@@ -1,12 +1,14 @@
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import FormInput from '@/components/form/FormInput';
+import { SubmitButton } from '@/components/form/Buttons';
 
 const CreateProfilePage = () => {
   const createProfileAction = async (formData: FormData) => {
     'use server';
 
     const firstName = formData.get('firstName') as string;
+    // await new Promise((resolve: any) => setTimeout(resolve, 3000));
+
     console.log(firstName);
   };
 
@@ -15,15 +17,8 @@ const CreateProfilePage = () => {
       <h1 className='text-2xl font-semibold mb-8 capitalize '>new user</h1>
       <div className=' max-w-lg border p-8 rounded-md shadow-sm '>
         <form action={createProfileAction}>
-          <div className='flex flex-col gap-3'>
-            <Label htmlFor='firstName' className='text-lg tracking-wide'>
-              First Name
-            </Label>
-            <Input type='text' id='firstName' name='firstName' />
-          </div>
-          <Button type='submit' size='lg' className='mt-6'>
-            Submit
-          </Button>
+          <FormInput name='firstName' type='text' label='first name' />
+          <SubmitButton />
         </form>
       </div>
     </div>
