@@ -1,16 +1,17 @@
+import { Menu } from 'lucide-react';
+import { links } from '@/utils/links';
+import Link from 'next/link';
+import { SignInButton, SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import Link from 'next/link';
-import { links } from '@/utils/links';
-import { Button } from '../ui/button';
-import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import UserIcon from './UserIcon';
+import SignOutLink from './SignOutLink';
 
 const LinksDropdown = () => {
   return (
@@ -22,13 +23,32 @@ const LinksDropdown = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-52' sideOffset={10}>
-        {links.map((link) => (
-          <DropdownMenuItem key={link.href}>
-            <Link href={link.href} className='capitalize '>
-              {link.label}
-            </Link>
+        <SignedIn>
+          {links.map((link) => (
+            <DropdownMenuItem key={link.href}>
+              <Link href={link.href} className='capitalize '>
+                {link.label}
+              </Link>
+            </DropdownMenuItem>
+          ))}
+          <DropdownMenuSeparator className='bg-slate-200 dark:bg-slate-700' />
+          <DropdownMenuItem>
+            <SignOutLink />
           </DropdownMenuItem>
-        ))}
+        </SignedIn>
+        <SignedOut>
+          <DropdownMenuItem>
+            <SignInButton mode='modal'>
+              <button>Login</button>
+            </SignInButton>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator className='bg-slate-200 dark:bg-slate-700' />
+          <DropdownMenuItem>
+            <SignUpButton mode='modal'>
+              <button>Register</button>
+            </SignUpButton>
+          </DropdownMenuItem>
+        </SignedOut>
       </DropdownMenuContent>
     </DropdownMenu>
   );
