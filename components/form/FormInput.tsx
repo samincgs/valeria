@@ -18,7 +18,7 @@ const FormInput = ({
 }: FormInputProps) => {
   return (
     <div className='flex flex-col gap-2 mb-4'>
-      <Label htmlFor={name} className='text-lg tracking-wide capitalize'>
+      <Label htmlFor={name} className='tracking-wide font-semibold capitalize'>
         {label || name}
       </Label>
       <Input
