@@ -8,7 +8,7 @@ export const profileSchema = z.object({
   lastName: z.string().min(2, {
     message: 'last name must be at least 2 characters',
   }),
-  userName: z.string().min(2, {
+  username: z.string().min(2, {
     message: 'username must be at least 2 characters',
   }),
 });
