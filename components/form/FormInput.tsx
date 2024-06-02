@@ -1,5 +1,6 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import FormLabel from './FormLabel';
 
 type FormInputProps = {
   name: string;
@@ -18,9 +19,7 @@ const FormInput = ({
 }: FormInputProps) => {
   return (
     <div className='flex flex-col gap-2 mb-4'>
-      <Label htmlFor={name} className='tracking-wide font-semibold capitalize'>
-        {label || name}
-      </Label>
+      <FormLabel name={name} text={label || name} />
       <Input
         type={type}
         id={name}

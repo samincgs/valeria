@@ -1,13 +1,12 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import FormLabel from './FormLabel';
 
 const ImageInput = () => {
   const name = 'image';
   return (
     <div className='mb-2'>
-      <Label htmlFor={name} className='capitalize'>
-        Image
-      </Label>
+      <FormLabel name={name} />
       <Input
         type='file'
         id={name}

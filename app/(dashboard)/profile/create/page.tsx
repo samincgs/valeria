@@ -13,7 +13,7 @@ const CreateProfilePage = async () => {
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-8 capitalize '>new user</h1>
-      <div className='border max-w-6xl p-8 rounded-md shadow-sm '>
+      <div className='border md:max-w-6xl lg:max-w-7xl p-8 rounded-md shadow-sm '>
         <FormContainer action={createProfileAction}>
           <div className='grid md:grid-cols-2 gap-4 mt-4'>
             <FormInput name='firstName' type='text' label='first name' />
