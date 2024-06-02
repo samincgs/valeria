@@ -7,18 +7,20 @@ import { useFormStatus } from 'react-dom';
 type SubmitButtonProps = {
   text?: string;
   className?: string;
+  size?: 'default' | 'lg' | 'sm';
 };
 
 export const SubmitButton = ({
   text = 'submit',
   className,
+  size = 'lg',
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
 
   return (
     <Button
       type='submit'
-      size='lg'
+      size={size}
       disabled={pending}
       className={`capitalize ${className}`}
     >
