@@ -13,7 +13,10 @@ const HomePage = ({
         category={searchParams.category}
         search={searchParams.search}
       />
-      {/* <PropertiesContainer  category={searchParams.category} search={searchParams.search} /> */}
+      <PropertiesContainer
+        category={searchParams.category}
+        search={searchParams.search}
+      />
     </div>
   );
 };

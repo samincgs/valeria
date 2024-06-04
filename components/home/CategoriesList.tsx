@@ -17,7 +17,7 @@ const CategoriesList = ({ category, search }: CategoriesListProps) => {
           <Link key={item.label} href={`/?category=${item.label}${searchTerm}`}>
             <div
               className={cn(
-                'p-3 flex flex-col items-center cursor-pointer duration-300 hover:text-primary w-[100px] ',
+                'p-3 flex flex-col items-center cursor-pointer hover:text-primary w-[100px] transition',
                 item.label === category ? 'text-primary' : ''
               )}
             >
