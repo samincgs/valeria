@@ -7,7 +7,7 @@ type PropertiesListProps = {
 
 const PropertiesList = ({ properties }: PropertiesListProps) => {
   return (
-    <div className='mt-4 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+    <div className='mt-4 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
       {properties.map((property) => (
         <PropertyCard key={property.id} property={property} />
       ))}
