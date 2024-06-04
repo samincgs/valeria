@@ -2,6 +2,7 @@ import { formatCurrency } from '@/utils/format';
 import { PropertyCardProps } from '@/utils/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import PropertyRating from './PropertyRating';
 
 const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
   const { name, price, tagline, image, country, id: propertyId } = property;
@@ -19,8 +20,8 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
         </div>
         <div className='flex justify-between items-center'>
           {/* add name in substring method 0 - 30 */}
-          <h3 className='text-sm font-semibold mt-1'>{name}</h3>
-          {/* property rating */}
+          <h3 className='text-sm font-bold mt-1'>{name}</h3>
+          <PropertyRating propertyId={propertyId} inPage={false} />
         </div>
         <p className='text-sm mt-1 text-muted-foreground'>{tagline}</p>
         <div className='flex items-center justify-between mt-1'>
