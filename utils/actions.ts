@@ -204,3 +204,79 @@ export async function fetchProperties({
 
   return properties;
 }
+
+export async function fetchFavoriteId({ propertyId }: { propertyId: string }) {
+  const user = await getAuthUser();
+
+  const favorite = await db.favorite.findFirst({
+    where: {
+      profileId: user.id,
+      propertyId,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  return favorite?.id || null;
+}
+
+export async function toggleFavoriteAction(
+  prevState: {
+    propertyId: string;
+    favoriteId: string | null;
+    pathname: string;
+  },
+  formData: FormData
+) {
+  const { propertyId, favoriteId, pathname } = prevState;
+  const user = await getAuthUser();
+
+  try {
+    if (favoriteId) {
+      await db.favorite.delete({
+        where: {
+          id: favoriteId,
+        },
+      });
+    } else {
+      await db.favorite.create({
+        data: {
+          profileId: user.id,
+          propertyId,
+        },
+      });
+    }
+
+    revalidatePath(pathname);
+    return {
+      message: favoriteId ? 'removed from favorites' : 'added to favorites',
+    };
+  } catch (error) {
+    return renderError(error);
+  }
+}
+
+export async function fetchFavorites() {
+  const user = await getAuthUser();
+
+  const favorites = await db.favorite.findMany({
+    where: {
+      profileId: user.id,
+    },
+    select: {
+      property: {
+        select: {
+          id: true,
+          tagline: true,
+          name: true,
+          country: true,
+          price: true,
+          image: true,
+        },
+      },
+    },
+  });
+
+  return favorites.map((favorite) => favorite.property);
+}
