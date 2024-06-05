@@ -3,6 +3,8 @@
 import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useFormStatus } from 'react-dom';
+import { SignInButton } from '@clerk/nextjs';
+import { FaRegHeart } from 'react-icons/fa';
 
 type SubmitButtonProps = {
   text?: string;
@@ -33,5 +35,15 @@ export const SubmitButton = ({
         <p>{text}</p>
       )}
     </Button>
+  );
+};
+
+export const CardSignInButton = () => {
+  return (
+    <SignInButton mode='modal'>
+      <Button type='button' size={'icon'} variant={'outline'}>
+        <FaRegHeart className='w-4 h-4' />
+      </Button>
+    </SignInButton>
   );
 };
