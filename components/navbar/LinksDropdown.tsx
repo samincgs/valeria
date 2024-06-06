@@ -26,7 +26,7 @@ const LinksDropdown = () => {
         <SignedIn>
           {links.map((link) => (
             <DropdownMenuItem key={link.href}>
-              <Link href={link.href} className='capitalize '>
+              <Link href={link.href} className='capitalize'>
                 {link.label}
               </Link>
             </DropdownMenuItem>

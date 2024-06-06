@@ -280,3 +280,14 @@ export async function fetchFavorites() {
 
   return favorites.map((favorite) => favorite.property);
 }
+
+export async function fetchPropertyDetails(id: string) {
+  return db.property.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      profile: true,
+    },
+  });
+}
