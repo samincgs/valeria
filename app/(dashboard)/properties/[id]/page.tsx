@@ -3,7 +3,9 @@ import PropertyRating from '@/components/card/PropertyRating';
 import BookingCalendar from '@/components/properties/BookingCalendar';
 import BreadCrumbs from '@/components/properties/BreadCrumbs';
 import ImageContainer from '@/components/properties/ImageContainer';
+import PropertyDetails from '@/components/properties/PropertyDetails';
 import ShareButton from '@/components/properties/ShareButton';
+import UserInfo from '@/components/properties/UserInfo';
 import { fetchPropertyDetails } from '@/utils/actions';
 import { redirect } from 'next/navigation';
 const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
@@ -13,6 +15,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   }
 
   const { id, name, tagline, baths, bedrooms, beds, guests, image } = property;
+  const { firstName, profileImage } = property.profile;
   const details = { baths, bedrooms, beds, guests };
 
   return (
@@ -32,6 +35,8 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
             <h1 className='text-2xl font-bold'>{name}</h1>
             <PropertyRating inPage propertyId={id} />
           </div>
+          <PropertyDetails details={details} />
+          <UserInfo profileImage={profileImage} firstName={firstName} />
         </div>
         <div className='lg:col-span-4 flex flex-col items-center'>
           <BookingCalendar />

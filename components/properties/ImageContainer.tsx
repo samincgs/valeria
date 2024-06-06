@@ -10,7 +10,7 @@ const ImageContainer = ({ mainImage, name }: ImageContainerProps) => {
     <div className='h-[300px] md:h-[500px] relative mt-8'>
       <Image
         src={mainImage}
-        alt='name'
+        alt={name}
         fill
         className='object-cover rounded'
         priority
