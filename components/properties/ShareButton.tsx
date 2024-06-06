@@ -13,6 +13,8 @@ import {
   TwitterIcon,
   FacebookShareButton,
   FacebookIcon,
+  EmailShareButton,
+  EmailIcon,
 } from 'react-share';
 
 type ShareButtonProps = {
@@ -38,9 +40,9 @@ const ShareButton = ({ propertyId, name }: ShareButtonProps) => {
           <LinkedinShareButton url={shareLink} title={name}>
             <LinkedinIcon size={32} round />
           </LinkedinShareButton>
-          <FacebookShareButton url={shareLink} title={name}>
-            <FacebookIcon size={32} round />
-          </FacebookShareButton>
+          <EmailShareButton url={shareLink} title={name}>
+            <EmailIcon size={32} round />
+          </EmailShareButton>
         </div>
       </PopoverContent>
     </Popover>
