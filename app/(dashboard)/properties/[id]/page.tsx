@@ -2,10 +2,12 @@ import FavoriteToggleButton from '@/components/card/FavoriteToggleButton';
 import PropertyRating from '@/components/card/PropertyRating';
 import BookingCalendar from '@/components/properties/BookingCalendar';
 import BreadCrumbs from '@/components/properties/BreadCrumbs';
+import Description from '@/components/properties/Description';
 import ImageContainer from '@/components/properties/ImageContainer';
 import PropertyDetails from '@/components/properties/PropertyDetails';
 import ShareButton from '@/components/properties/ShareButton';
 import UserInfo from '@/components/properties/UserInfo';
+import { Separator } from '@/components/ui/separator';
 import { fetchPropertyDetails } from '@/utils/actions';
 import { redirect } from 'next/navigation';
 const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
@@ -14,7 +16,17 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
     redirect('/');
   }
 
-  const { id, name, tagline, baths, bedrooms, beds, guests, image } = property;
+  const {
+    id,
+    name,
+    tagline,
+    baths,
+    bedrooms,
+    beds,
+    guests,
+    image,
+    description,
+  } = property;
   const { firstName, profileImage } = property.profile;
   const details = { baths, bedrooms, beds, guests };
 
@@ -37,6 +49,8 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           </div>
           <PropertyDetails details={details} />
           <UserInfo profileImage={profileImage} firstName={firstName} />
+          <Separator className='mt-4' />
+          <Description description={description} />
         </div>
         <div className='lg:col-span-4 flex flex-col items-center'>
           <BookingCalendar />
