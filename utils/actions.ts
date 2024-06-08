@@ -17,10 +17,7 @@ async function getAuthUser() {
   if (!user) {
     throw new Error('You must be logged in to access this route');
   }
-  if (!user?.privateMetadata?.hasProfile) {
-    redirect(`/profile/create`);
-  }
-
+  if (!user.privateMetadata.hasProfile) redirect('/profile/create');
   return user;
 }
 
