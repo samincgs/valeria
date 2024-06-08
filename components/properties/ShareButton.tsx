@@ -4,15 +4,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Share } from 'lucide-react';
+import { IoMdShare } from 'react-icons/io';
+
 import { Button } from '@/components/ui/button';
 import {
   LinkedinShareButton,
   LinkedinIcon,
   TwitterShareButton,
   TwitterIcon,
-  FacebookShareButton,
-  FacebookIcon,
   EmailShareButton,
   EmailIcon,
 } from 'react-share';
@@ -29,7 +28,7 @@ const ShareButton = ({ propertyId, name }: ShareButtonProps) => {
     <Popover>
       <PopoverTrigger asChild>
         <Button size={'icon'} variant={'outline'}>
-          <Share className='w-4 h-4' />
+          <IoMdShare className='w-4 h-4' />
         </Button>
       </PopoverTrigger>
       <PopoverContent className='w-32' side='top' align='end' sideOffset={10}>
