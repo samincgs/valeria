@@ -1,5 +1,6 @@
 import FavoriteToggleButton from '@/components/card/FavoriteToggleButton';
 import PropertyRating from '@/components/card/PropertyRating';
+import Amenities from '@/components/properties/Amenities';
 import BookingCalendar from '@/components/properties/BookingCalendar';
 import BreadCrumbs from '@/components/properties/BreadCrumbs';
 import Description from '@/components/properties/Description';
@@ -26,6 +27,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
     guests,
     image,
     description,
+    amenities,
   } = property;
   const { firstName, profileImage } = property.profile;
   const details = { baths, bedrooms, beds, guests };
@@ -51,6 +53,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <UserInfo profileImage={profileImage} firstName={firstName} />
           <Separator className='mt-4' />
           <Description description={description} />
+          <Amenities amenities={amenities} />
         </div>
         <div className='lg:col-span-4 flex flex-col items-center'>
           <BookingCalendar />
