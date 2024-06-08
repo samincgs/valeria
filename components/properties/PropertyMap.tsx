@@ -22,7 +22,7 @@ const PropertyMap = ({ countryCode }: { countryCode: string }) => {
         center={location || defaultLocation}
         zoomControl={false}
         scrollWheelZoom={false}
-        zoom={7}
+        zoom={6}
         className='h-[50vh] rounded-lg relative z-0'
       >
         <TileLayer
