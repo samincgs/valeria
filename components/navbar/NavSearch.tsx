@@ -7,7 +7,6 @@ import { useDebouncedCallback } from 'use-debounce';
 const NavSearch = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const pathname = usePathname();
 
   const [search, setSearch] = useState(
     searchParams.get('search')?.toString() || ''
@@ -20,7 +19,7 @@ const NavSearch = () => {
     } else {
       params.delete('search');
     }
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`/?${params.toString()}`);
   }, 500);
 
   useEffect(() => {
