@@ -297,6 +297,16 @@ export async function createReviewAction(prevState: any, formData: FormData) {
     const rawData = Object.fromEntries(formData);
     const validatedFields = validateWithZodSchema(reviewSchema, rawData);
 
+    const existingReview = await db.review.findFirst({
+      where: {
+        profileId: user.id,
+        propertyId: validatedFields.propertyId,
+      },
+    });
+
+    if (existingReview)
+      return { message: 'You have already created a review for this property' };
+
     await db.review.create({
       data: {
         profileId: user.id,
