@@ -27,6 +27,7 @@ model Profile {
 
   properties Property[]
   favorites Favorite[]
+  reviews Review[]
 }
 
 model Property {
@@ -50,6 +51,8 @@ model Property {
   profile Profile @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
 
   favorites Favorite[]
+  reviews Review[]
+
 
 }
 
@@ -62,4 +65,18 @@ model Favorite {
   profile Profile @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
   propertyId String
   property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id String @id @default(uuid())
+  rating Int
+  comment String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profileId String
+  profile Profile @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
+  propertyId String
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
 }

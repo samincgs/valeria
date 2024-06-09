@@ -4,6 +4,7 @@ import {
   imageSchema,
   profileSchema,
   propertySchema,
+  reviewSchema,
   validateWithZodSchema,
 } from './schemas';
 import { db } from './db';
@@ -287,4 +288,25 @@ export async function fetchPropertyDetails(id: string) {
       profile: true,
     },
   });
+}
+
+export async function createReviewAction(prevState: any, formData: FormData) {
+  const user = await getAuthUser();
+
+  try {
+    const rawData = Object.fromEntries(formData);
+    const validatedFields = validateWithZodSchema(reviewSchema, rawData);
+
+    await db.review.create({
+      data: {
+        profileId: user.id,
+        ...validatedFields,
+      },
+    });
+
+    revalidatePath(`/properties/${validatedFields.propertyId}`);
+    return { message: 'review has been created successfully' };
+  } catch (error) {
+    return renderError(error);
+  }
 }

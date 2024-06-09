@@ -77,7 +77,26 @@ export const propertySchema = z.object({
   amenities: z.string(),
 });
 
-export function validateWithZodSchema(schema: ZodSchema, data: unknown) {
+export const reviewSchema = z.object({
+  propertyId: z.string(),
+  rating: z.coerce
+    .number()
+    .int()
+    .min(1, {
+      message: 'rating has to be at least 1 or more',
+    })
+    .max(5, {
+      message: 'rating can not be more than 5',
+    }),
+  comment: z
+    .string()
+    .min(10, {
+      message: 'comment must be at least 10 characters',
+    })
+    .max(1000),
+});
+
+export function validateWithZodSchema<T>(schema: ZodSchema<T>, data: unknown) {
   const result = schema.safeParse(data);
   if (!result.success) {
     const errors = result.error.errors.map((error) => error.message);
