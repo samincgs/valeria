@@ -13,7 +13,7 @@ const Comment = ({ comment }: { comment: string }) => {
   };
 
   return (
-    <div className=''>
+    <div>
       <p className='text-sm leading-relaxed'>{displayedComment}</p>
       {isLongComment && (
         <Button

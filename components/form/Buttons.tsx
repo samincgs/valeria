@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader2 } from 'lucide-react';
+import { Loader2, Trash, PenSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useFormStatus } from 'react-dom';
 import { SignInButton } from '@clerk/nextjs';
@@ -11,6 +11,8 @@ type SubmitButtonProps = {
   className?: string;
   size?: 'default' | 'lg' | 'sm';
 };
+
+type actionType = 'edit' | 'delete';
 
 export const SubmitButton = ({
   text = 'submit',
@@ -59,6 +61,22 @@ export const CardSubmitButton = ({ isFavorite }: { isFavorite: boolean }) => {
       ) : (
         <FaRegHeart className='w-4 h-4' />
       )}
+    </Button>
+  );
+};
+
+export const IconButton = ({ actionType }: { actionType: actionType }) => {
+  const { pending } = useFormStatus();
+  const renderIcon =
+    actionType === 'edit' ? (
+      <PenSquare className='w-4 h-4' />
+    ) : (
+      <Trash className='w-4 h-4' />
+    );
+
+  return (
+    <Button type='submit' size={'icon'} variant={'link'}>
+      {pending ? <Loader2 className='w-4 h-4 animate-spin' /> : renderIcon}
     </Button>
   );
 };
