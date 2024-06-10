@@ -103,7 +103,7 @@ export async function updateProfileAction(prevState: any, formData: FormData) {
     });
 
     revalidatePath('/profile');
-    return { message: 'profile has been updated' };
+    return { message: 'Profile has been updated' };
   } catch (error) {
     return renderError(error);
   }
@@ -131,7 +131,7 @@ export async function updateProfileImageAction(
 
     revalidatePath('/profile');
 
-    return { message: 'profile image has been updated' };
+    return { message: 'Profile image has been updated' };
   } catch (error) {
     return renderError(error);
   }
@@ -248,7 +248,7 @@ export async function toggleFavoriteAction(
 
     revalidatePath(pathname);
     return {
-      message: favoriteId ? 'removed from favorites' : 'added to favorites',
+      message: favoriteId ? 'Removed from favorites' : 'Added to favorites',
     };
   } catch (error) {
     return renderError(error);
@@ -315,7 +315,7 @@ export async function createReviewAction(prevState: any, formData: FormData) {
     });
 
     revalidatePath(`/properties/${validatedFields.propertyId}`);
-    return { message: 'review has been created successfully' };
+    return { message: 'Review has been created successfully' };
   } catch (error) {
     return renderError(error);
   }
@@ -368,7 +368,7 @@ export async function fetchPropertyReviewsByUser() {
   return reviews;
 }
 
-export async function deletePropertyAction(prevState: { reviewId: string }) {
+export async function deleteReviewAction(prevState: { reviewId: string }) {
   const { reviewId } = prevState;
   const user = await getAuthUser();
 
@@ -382,7 +382,7 @@ export async function deletePropertyAction(prevState: { reviewId: string }) {
 
     revalidatePath('/reviews');
 
-    return { message: 'review deleted successfully' };
+    return { message: 'Review deleted successfully' };
   } catch (error) {
     return renderError(error);
   }

@@ -2,40 +2,49 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Rating from './Rating';
 import Comment from './Comment';
 
+// type ReviewCardPropertyProps = {
+//   review: {
+//     rating: number;
+//     comment: string;
+//     profile: {
+//       firstName: string;
+//       profileImage: string;
+//     };
+//   };
+//   children?: React.ReactNode;
+// };
 type ReviewCardProps = {
-  review: {
-    rating: number;
+  reviewInfo: {
     comment: string;
-    profile: {
-      firstName: string;
-      profileImage: string;
-    };
+    rating: number;
+    name: string;
+    image: string;
   };
   children?: React.ReactNode;
 };
 
-const ReviewCard = ({ review, children }: ReviewCardProps) => {
-  const { rating, comment, profile } = review;
-  const { firstName, profileImage } = profile;
+const ReviewCard = ({ reviewInfo, children }: ReviewCardProps) => {
   return (
     <Card className='relative'>
       <CardHeader>
         <div className='flex items-center'>
           <img
-            src={profileImage}
+            src={reviewInfo.image}
             alt='firstName'
             className='w-12 h-12 rounded-full object-cover'
           />
           <div className='ml-4'>
-            <h3 className='text-md font-bold capitalize mb-1'>{firstName}</h3>
-            <Rating rating={rating} />
+            <h3 className='text-md font-bold capitalize mb-1'>
+              {reviewInfo.name}
+            </h3>
+            <Rating rating={reviewInfo.rating} />
           </div>
         </div>
       </CardHeader>
       <CardContent>
-        <Comment comment={comment} />
+        <Comment comment={reviewInfo.comment} />
       </CardContent>
-      <div className='absolute top-3 right-3'>
+      <div className='absolute top-5 right-3'>
         {/* delete button later */}
         {children}
       </div>

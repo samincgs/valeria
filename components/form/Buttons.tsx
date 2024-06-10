@@ -69,9 +69,9 @@ export const IconButton = ({ actionType }: { actionType: actionType }) => {
   const { pending } = useFormStatus();
   const renderIcon =
     actionType === 'edit' ? (
-      <PenSquare className='w-4 h-4' />
+      <PenSquare className='w-5 h-5' />
     ) : (
-      <Trash className='w-4 h-4' />
+      <Trash className='w-5 h-5 text-rose-700 fill-none hover:fill-current transition duration-200' />
     );
 
   return (
