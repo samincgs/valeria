@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { fetchPropertyRating } from '@/utils/actions';
 import { FaStar } from 'react-icons/fa';
 
 type PropertyRatingProps = {
@@ -6,10 +7,11 @@ type PropertyRatingProps = {
   inPage: boolean;
 };
 
-const PropertyRating = ({ propertyId, inPage }: PropertyRatingProps) => {
-  // temp
-  const rating = 4.7;
-  const count = 100;
+const PropertyRating = async ({ propertyId, inPage }: PropertyRatingProps) => {
+  const { count, rating } = await fetchPropertyRating(propertyId);
+
+  if (count === 0) return null;
+
   const countText = count > 1 ? 'reviews' : 'review';
   const countValue = `(${count}) ${inPage ? countText : ''}`;
   return (
