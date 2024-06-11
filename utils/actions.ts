@@ -297,15 +297,15 @@ export async function createReviewAction(prevState: any, formData: FormData) {
     const rawData = Object.fromEntries(formData);
     const validatedFields = validateWithZodSchema(reviewSchema, rawData);
 
-    const existingReview = await db.review.findFirst({
-      where: {
-        profileId: user.id,
-        propertyId: validatedFields.propertyId,
-      },
-    });
+    // const existingReview = await db.review.findFirst({
+    //   where: {
+    //     profileId: user.id,
+    //     propertyId: validatedFields.propertyId,
+    //   },
+    // });
 
-    if (existingReview)
-      return { message: 'You have already created a review for this property' };
+    // if (existingReview)
+    //   return { message: 'You have already created a review for this property' };
 
     await db.review.create({
       data: {
@@ -406,4 +406,13 @@ export async function fetchPropertyRating(propertyId: string) {
     rating: result[0]?._avg.rating?.toFixed() ?? 0,
     count: result[0]?._count.rating ?? 0,
   };
+}
+
+export async function fetchExistingReview(userId: string, propertyId: string) {
+  return await db.review.findFirst({
+    where: {
+      profileId: userId,
+      propertyId,
+    },
+  });
 }

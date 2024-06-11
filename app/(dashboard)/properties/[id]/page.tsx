@@ -12,9 +12,10 @@ import PropertyReviews from '@/components/reviews/PropertyReviews';
 import SubmitReview from '@/components/reviews/SubmitReview';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
-import { fetchPropertyDetails } from '@/utils/actions';
+import { fetchPropertyDetails, fetchExistingReview } from '@/utils/actions';
 import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
+import { auth } from '@clerk/nextjs/server';
 
 const DynamicMap = dynamic(
   () => import('@/components/properties/PropertyMap'),
@@ -46,6 +47,11 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const { firstName, profileImage } = property.profile;
   const details = { baths, bedrooms, beds, guests };
 
+  const { userId } = auth();
+  const isNotOwner = property.profile.clerkId !== userId;
+  const reviewDoesNotExist =
+    userId && isNotOwner && !(await fetchExistingReview(userId, id));
+
   return (
     <div>
       <BreadCrumbs name={name} />
@@ -74,7 +80,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <BookingCalendar />
         </div>
       </div>
-      <SubmitReview propertyId={id} />
+      {reviewDoesNotExist && <SubmitReview propertyId={id} />}
       <PropertyReviews propertyId={id} />
     </div>
   );
